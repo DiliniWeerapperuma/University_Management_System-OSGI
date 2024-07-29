@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LecturerConsumer
+Bundle-SymbolicName: LecturerConsumer
+Bundle-Version: 1.0.0.qualifier
+Import-Package: lecturerproducer,
+ org.osgi.framework;version="1.10.0"
+Bundle-Activator: lecturerconsumer.ServiceActivator
+Bundle-Vendor: MTIT
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: LecturerConsumer
+Bundle-ActivationPolicy: lazy

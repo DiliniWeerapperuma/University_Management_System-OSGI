@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ReceptionProducer
+Bundle-SymbolicName: ReceptionProducer
+Bundle-Version: 1.0.0.qualifier
+Import-Package: org.osgi.framework;version="1.10.0",
+ receptionproducer
+Export-Package: receptionproducer
+Bundle-Activator: receptionproducer.ServiceActivator
+Bundle-Vendor: MTIT
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: ReceptionProducer
+Bundle-ActivationPolicy: lazy

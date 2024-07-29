@@ -1,0 +1,179 @@
+package lecturerproducer;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class LecturerProducerImpl implements LecturerProducer{
+	
+	Scanner sc = new Scanner (System.in);
+	
+	String  llecturerName, lNic, lQualification, lMobileNo, lModule;
+	
+	static ArrayList<Lecturer> llecturer = new ArrayList<Lecturer>();
+
+	@Override
+	public void RegisterLecturer() {
+		
+		System.out.println();
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.println("---------------------------------Hello------------------------------------");
+		System.out.println("--------------Welcome to KMS Institute Management System-----------------");
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.println("==========================================================================");
+		System.out.println("");
+		System.out.println(" -------------Welcome to Lecturer Registration Panel--------------------- ");
+		System.out.println();
+		
+		
+		System.out.print("Are You A New Lecturer (y|Y or n|N)?: ");
+		String input = sc.next();
+		System.out.println();
+
+		while (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("Y")) {
+			
+			
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.println();
+			
+			System.out.print("Enter Your Name  : ");
+			llecturerName = sc.next();
+			
+			System.out.print("Enter Your NIC : ");
+			lNic = sc.next();
+			
+			System.out.print("Enter Your Qualification : ");
+			lQualification = sc.next();
+			
+			System.out.print("Enter Your Mobile Number: ");
+			lMobileNo = sc.next();
+					
+			System.out.print("Enter Your Module : ");
+			lModule = sc.next();
+			
+		
+			
+			llecturer.add(new Lecturer(llecturerName, lNic, lQualification, lMobileNo, lModule));
+			
+			System.out.println();
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.println();
+			System.out.print("Do You Want To Add Another Lecturer (y|Y or n|N)?: ");
+			input = sc.next();
+			System.out.println();
+		}
+		
+	}
+
+	@Override
+	public void UpdateLecturer(Lecturer lecturer) {
+		
+		System.out.print("Do You Want To Update Lecturer Details (y|Y or n|N)?: ");
+		String input = sc.next();
+		System.out.println("--------------------------------------------------------------------------");
+
+		while (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("Y")) {
+			
+			if (llecturer.contains(lecturer)) {
+				
+				System.out.print("What Do You Want To Edit(Name:1, Qualification:2, Contact Number:3, Subject:4)?: ");
+				int editDetails = sc.nextInt();
+				
+				if(editDetails ==1) {
+					System.out.print("Enter Name: ");
+					llecturerName = sc.next();
+				}
+				
+				else if(editDetails == 2){
+					System.out.print("Enter Current Qualification: ");
+					lQualification = sc.next();
+				}
+				else if(editDetails == 3){
+					System.out.print("Enter Contact Number: ");
+					lMobileNo = sc.next();
+				}
+				else if(editDetails == 4){
+					System.out.print("Enter Subject: ");
+					lModule = sc.next();
+				}
+				
+				else {
+					System.out.println("You Entered Invalid Number");
+				}
+				System.out.println("--------------------------------------------------------------------------");
+				llecturer.set(llecturer.indexOf(lecturer), new Lecturer(llecturerName, lNic, lQualification, lMobileNo, lModule));
+
+			} else if (llecturer.size() == 0) {
+				System.out.println("No record added yet!");
+			} else {
+				System.out.println("Invalid Lecturer NIC!");
+			}
+			System.out.print("Do You Want To Add Another Lecturer(y|Y or n|N)?: ");
+			input = sc.next();
+		}
+		
+		
+		
+	}
+	public void DeleteLecturer(String lecturerId) {
+	
+		System.out.print("Are You Sure; Do You Want To Delete This Lecturer (y|Y or n|N)?: ");
+		String input = sc.next();
+
+		while (input.equalsIgnoreCase("y") || input.equalsIgnoreCase("Y")) {
+			if (llecturer.size() != 0) {
+				int j = 0;
+				for (int i = 0; i < llecturer.size(); i++) {
+					if (llecturer.get(i).getNic() == lNic) {
+						String deleteNIC = llecturer.get(i).getNic();
+						llecturer.remove(i);
+						System.out.println("lecturer :" + deleteNIC + " Is Deleted Successfully");
+						break;
+					}
+					j++;
+				}
+			} else {
+				System.out.println("No record added yet!");
+			}
+			
+			System.out.print("Do You Want To Delete Another Lecturer (y|Y or n|N)?: ");
+			input = sc.next();
+		}
+		
+	}
+
+	@Override
+	public void DisplayLecturerList() {
+		
+		System.out.println();
+		System.out.println("--------------------------------------------------------------------------");
+		System.out.println("--------------Display Lecturer Details------------------------------------");
+		System.out.println("--------------------------------------------------------------------------");
+		
+		System.out.println();
+		
+		for (Lecturer teach : llecturer) {
+			System.out.println("--------------------------Lecturer Details-------------------------------");
+			System.out.println("Lecturer NIC           : " + teach.getNic());
+			System.out.println("Lecturer Name          : " + teach.getLecturerName());
+			System.out.println("Lecturer Qualification : " + teach.getQualification());
+			System.out.println("Lecturer Mobile No     : " + teach.getMobileNo());
+			System.out.println("Lecturer Module        : " + teach.getModule());
+			
+			System.out.println("--------------------------------------------------------------------------");
+		}
+		
+	}
+
+	@Override
+	public Lecturer getLecturerById(String lecturerId) {
+		for (Lecturer lecture : llecturer) {
+			if (lecture.getNic() == lNic) {
+				return lecture;
+			}
+		}
+		
+		return null;
+	}
+	
+
+}

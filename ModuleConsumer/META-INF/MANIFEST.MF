@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ModuleConsumer
+Bundle-SymbolicName: ModuleConsumer
+Bundle-Version: 1.0.0.qualifier
+Import-Package: moduleproducer,
+ org.osgi.framework;version="1.10.0"
+Bundle-Activator: moduleconsumer.ServiceActivator
+Bundle-Vendor: MTIT
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: ModuleConsumer
+Bundle-ActivationPolicy: lazy
